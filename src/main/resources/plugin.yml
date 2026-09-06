@@ -1,0 +1,7 @@
+name: SlashPluginsBlocker
+version: 1.0.0
+main: com.ennismore.slashpluginsblocker.SlashPluginsBlocker
+api-version: '26.1'
+
+description: Blocks /plugins and its aliases.
+author: Ennismore0
