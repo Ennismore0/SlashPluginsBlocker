@@ -1,6 +1,8 @@
 package com.ennismore.slashpluginsblocker;
 
 import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -26,6 +28,11 @@ public final class SlashPluginsBlocker extends JavaPlugin implements Listener {
             return;
         }
 
+        if (event.getPlayer().isOp()
+                && !getConfig().getBoolean("enable-op-blocking", true)) {
+            return;
+        }
+
         String command = event.getMessage()
                 .trim()
                 .toLowerCase(Locale.ROOT);
@@ -37,9 +44,42 @@ public final class SlashPluginsBlocker extends JavaPlugin implements Listener {
 
             event.setCancelled(true);
 
+            String message = getConfig().getString(
+                    "customize-block-message",
+                    "&c(SlashPluginsBlocker) This command is blocked!"
+            );
+
             event.getPlayer().sendMessage(
-                    ChatColor.RED + "(SlashPluginsBlocker) This command is blocked!"
+                    ChatColor.translateAlternateColorCodes('&', message)
             );
         }
+    }
+
+    @Override
+    public boolean onCommand(
+            CommandSender sender,
+            Command command,
+            String label,
+            String[] args
+    ) {
+        if (!command.getName().equalsIgnoreCase("slashpluginsblocker")) {
+            return false;
+        }
+
+        if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+            reloadConfig();
+
+            sender.sendMessage(
+                    ChatColor.GREEN + "SlashPluginsBlocker configuration reloaded!"
+            );
+
+            return true;
+        }
+
+        sender.sendMessage(
+                ChatColor.RED + "Usage: /" + label + " reload"
+        );
+
+        return true;
     }
 }
