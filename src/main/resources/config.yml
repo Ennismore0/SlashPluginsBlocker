@@ -1,1 +1,3 @@
 blocking-enabled: true
+enable-op-blocking: true
+customize-block-message: "&c(SlashPluginsBlocker) This command is blocked!"
