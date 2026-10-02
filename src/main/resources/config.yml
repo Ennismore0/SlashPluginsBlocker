@@ -1,3 +1,13 @@
+# SlashPluginsBlocker v1.0.1
+#     Plugin Configuration
+
+# Do you want /plugins to be blocked?
 blocking-enabled: true
+
+# Do you want to enable /plugins blocking for people with OP?
 enable-op-blocking: true
+
+# Customize the blocking message
+# (Supports legacy ”&” style formatting)
+# (Does NOT support multiple lines)
 customize-block-message: "&c(SlashPluginsBlocker) This command is blocked!"
