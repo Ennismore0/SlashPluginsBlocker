@@ -1,4 +1,4 @@
-#### This Paper plugin blocks /plugins from being used.
+#### (This Paper plugin blocks /plugins from being used.)[example.com]
 \
 We've included all forms of the command, including /pl, /bukkit:pl, and /bukkit:plugins.
 
